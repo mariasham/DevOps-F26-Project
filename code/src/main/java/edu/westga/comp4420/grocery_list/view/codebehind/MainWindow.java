@@ -24,49 +24,76 @@ import javafx.stage.Stage;
  * @version 2026-10-11 [Fall 2026]
  */
 public class MainWindow {
-    @FXML private ListView<LawSchool> lawSchools;
-    @FXML private AnchorPane guiPane;
+	@FXML
+	private ListView<LawSchool> lawSchools;
+	@FXML
+	private AnchorPane guiPane;
 
-    @FXML
-    void initialize() {
-        assert this.lawSchools != null : "fx:id=\"lawSchools\" was not injected: check your FXML file.";
-        assert this.guiPane != null : "fx:id=\"guiPane\" was not injected: check your FXML file.";
+	@FXML
+	void initialize() {
+		assert this.lawSchools != null : "fx:id=\"lawSchools\" was not injected: check your FXML file.";
+		assert this.guiPane != null : "fx:id=\"guiPane\" was not injected: check your FXML file.";
 
-        LawSchoolRepository repository = new LawSchoolRepository();
-        this.lawSchools.getItems().setAll(repository.getSampleLawSchools());
-    }
+		LawSchoolRepository repository = new LawSchoolRepository();
+		this.lawSchools.getItems().setAll(repository.getSampleLawSchools());
+	}
 
-    @FXML
-    void openSelectedSchool(MouseEvent event) {
-        if (event.getClickCount() == 2) {
-            LawSchool selectedSchool = this.lawSchools.getSelectionModel().getSelectedItem();
-            if (selectedSchool != null) {
-                this.openDetailsWindow(selectedSchool);
-            }
-        }
-    }
+	@FXML
+	void addSchool() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource(Main.ADD_ITEM_WINDOW_RESOURCE));
+			loader.load();
 
-    private void openDetailsWindow(LawSchool selectedSchool) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource(Main.SCHOOL_DETAILS_WINDOW_RESOURCE));
-            loader.load();
+			Parent parent = loader.getRoot();
+			Scene scene = new Scene(parent);
+			Stage addSchoolStage = new Stage();
+			addSchoolStage.setTitle("Add Law School");
+			addSchoolStage.setScene(scene);
+			addSchoolStage.initModality(Modality.APPLICATION_MODAL);
 
-            Parent parent = loader.getRoot();
-            Scene scene = new Scene(parent);
-            Stage detailsStage = new Stage();
-            detailsStage.setTitle("Law School Details");
-            detailsStage.setScene(scene);
-            detailsStage.initModality(Modality.APPLICATION_MODAL);
+			AddItemWindow controller = loader.getController();
+			controller.setLawSchoolList(this.lawSchools.getItems());
 
-            SchoolDetailsWindow controller = loader.getController();
-            controller.setSchool(selectedSchool);
+			addSchoolStage.showAndWait();
+		} catch (IOException error) {
+			Alert errorBox = new Alert(AlertType.ERROR);
+			errorBox.setContentText("Unable to open add school window");
+			errorBox.showAndWait();
+		}
+	}
 
-            detailsStage.showAndWait();
-        } catch (IOException error) {
-            Alert errorBox = new Alert(AlertType.ERROR);
-            errorBox.setContentText("Unable to open school details");
-            errorBox.showAndWait();
-        }
-    }
+	@FXML
+	void openSelectedSchool(MouseEvent event) {
+		if (event.getClickCount() == 2) {
+			LawSchool selectedSchool = this.lawSchools.getSelectionModel().getSelectedItem();
+			if (selectedSchool != null) {
+				this.openDetailsWindow(selectedSchool);
+			}
+		}
+	}
+
+	private void openDetailsWindow(LawSchool selectedSchool) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource(Main.SCHOOL_DETAILS_WINDOW_RESOURCE));
+			loader.load();
+
+			Parent parent = loader.getRoot();
+			Scene scene = new Scene(parent);
+			Stage detailsStage = new Stage();
+			detailsStage.setTitle("Law School Details");
+			detailsStage.setScene(scene);
+			detailsStage.initModality(Modality.APPLICATION_MODAL);
+
+			SchoolDetailsWindow controller = loader.getController();
+			controller.setSchool(selectedSchool);
+
+			detailsStage.showAndWait();
+		} catch (IOException error) {
+			Alert errorBox = new Alert(AlertType.ERROR);
+			errorBox.setContentText("Unable to open school details");
+			errorBox.showAndWait();
+		}
+	}
 }
