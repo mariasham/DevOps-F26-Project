@@ -1,7 +1,13 @@
 package edu.westga.comp4420.grocery_list.view.codebehind;
 
 import edu.westga.comp4420.grocery_list.LawSchool;
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 
 /**
@@ -17,17 +23,35 @@ public class SchoolDetailsWindow {
     @FXML private Label statusLabel;
     @FXML private Label linkLabel;
 
+    private LawSchool school;
+
     /**
      * Sets the school displayed in the details window.
      *
      * @param school the selected law school
      */
     public void setSchool(LawSchool school) {
+        this.school = school;
         this.nameLabel.setText(school.getName());
         this.locationLabel.setText("Location: " + school.getLocation());
         this.deadlineLabel.setText("Deadline: " + school.getDeadline());
         this.statusLabel.setText("Status: " + school.getStatus());
         this.linkLabel.setText("Application Link: " + school.getApplicationLink());
+    }
+
+    @FXML
+    void openApplicationLink() {
+        if (this.school == null) {
+            return;
+        }
+
+        try {
+            Desktop.getDesktop().browse(new URI(this.school.getApplicationLink()));
+        } catch (IOException | URISyntaxException | UnsupportedOperationException error) {
+            Alert errorBox = new Alert(AlertType.ERROR);
+            errorBox.setContentText("Unable to open application link");
+            errorBox.showAndWait();
+        }
     }
 
     @FXML
