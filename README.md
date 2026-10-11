@@ -1,1 +1,5 @@
-# DevOps-F26-Project
+# Law School Application Tracker
+
+The Law School Application Tracker is designed to give future law students one place to find and organize information about law schools and their applications. Each listing will show the school’s name, location, program type, admission term, application deadline, when the information was last updated, and a link to apply. Users will also be able to search or filter the listings, save schools they are interested in, and track each application from the research stage through the final decision.
+
+I chose this project because I plan to apply to law school, and I know how overwhelming it can be to keep up with different schools, requirements, deadlines, and application websites. Having that information together would make the process easier to understand and manage. It also allows me to combine my interest in law school with my computing background by creating a system that I could realistically use.s
