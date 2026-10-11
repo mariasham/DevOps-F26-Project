@@ -11,13 +11,14 @@ import javafx.scene.Scene;
 /**
  * Entry point for the program
  *
- * @author	Comp 4420
+ * @author Comp 4420
  * @version Fall 2026
  */
 public class Main extends Application {
-	public static final String WINDOW_TITLE = "JavaFX Sample";
+	public static final String WINDOW_TITLE = "Law School Application Tracker";
 	public static final String MAIN_WINDOW_RESOURCE = "view/codebehind/MainWindow.fxml";
 	public static final String ADD_ITEM_WINDOW_RESOURCE = "view/codebehind/AddItemWindow.fxml";
+	public static final String SCHOOL_DETAILS_WINDOW_RESOURCE = "view/codebehind/SchoolDetailsWindow.fxml";
 
 	/**
 	 * JavaFX entry point.
@@ -43,7 +44,7 @@ public class Main extends Application {
 	 * @postcondition none
 	 *
 	 * @param args
-	 *            command line arguments
+	 *             command line arguments
 	 */
 	public static void main(String[] args) {
 		Main.launch(args);
