@@ -1,0 +1,223 @@
+:root {
+    --cream: #fff1df;
+    --terracotta: #af402c;
+    --peach: #f8d5b4;
+    --ink: #482b29;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 40px 20px;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    display: grid;
+    place-items: center;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 460px;
+    text-align: center;
+}
+
+.page-heading {
+    margin: 0 0 12px;
+    color: var(--terracotta);
+    font-size: clamp(36px, 7vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+}
+
+.subtitle {
+    margin: 0 0 24px;
+    line-height: 1.6;
+}
+
+.form-panel {
+    position: relative;
+    margin-top: 100px;
+    padding: 100px 36px 36px;
+    background: var(--terracotta);
+    color: var(--cream);
+    border-radius: 36px;
+}
+
+form {
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin: 22px 12px 9px;
+    font-size: 18px;
+}
+
+input {
+    width: 100%;
+    min-height: 52px;
+    padding: 12px 20px;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    background: var(--peach);
+    color: var(--ink);
+    font: inherit;
+}
+
+input:focus-visible {
+    outline: 3px solid var(--cream);
+    outline-offset: 4px;
+    border-color: var(--ink);
+}
+
+button {
+    width: 100%;
+    min-height: 54px;
+    margin-top: 30px;
+    padding: 14px 20px;
+    border: 2px solid var(--cream);
+    border-radius: 30px;
+    background: var(--cream);
+    color: var(--terracotta);
+    font: inherit;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.15s, background 0.15s;
+}
+
+button:hover {
+    background: var(--peach);
+    transform: translateY(-2px);
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid var(--cream);
+    outline-offset: 5px;
+}
+
+.switch-page {
+    margin: 26px 0 0;
+    line-height: 1.7;
+}
+
+a {
+    color: inherit;
+    text-underline-offset: 4px;
+    font-weight: bold;
+}
+
+.error {
+    margin: 12px 0 20px;
+    padding: 14px;
+    border: 2px solid var(--cream);
+    border-radius: 16px;
+    background: var(--cream);
+    color: #852b20;
+    line-height: 1.5;
+}
+
+/* Mushroom character built with CSS. */
+.mushroom {
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 160px;
+}
+
+.mushroom-cap {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    width: 200px;
+    height: 110px;
+    border: 5px solid var(--ink);
+    border-radius: 110px 110px 45px 45px;
+    background:
+        radial-gradient(ellipse 18px 15px at 25% 60%,
+            var(--cream) 95%, transparent 100%),
+        radial-gradient(ellipse 22px 18px at 62% 28%,
+            var(--cream) 95%, transparent 100%),
+        radial-gradient(ellipse 12px 14px at 85% 67%,
+            var(--cream) 95%, transparent 100%),
+        #ffb344;
+}
+
+.mushroom-stem {
+    position: absolute;
+    z-index: 3;
+    bottom: 0;
+    left: 48px;
+    width: 104px;
+    height: 77px;
+    border: 5px solid var(--ink);
+    border-radius: 18px 18px 35px 35px;
+    background: var(--peach);
+}
+
+.mushroom-eyes {
+    position: absolute;
+    top: 23px;
+    left: 23px;
+    width: 8px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--ink);
+    box-shadow: 40px 0 var(--ink);
+}
+
+.mushroom-smile {
+    position: absolute;
+    top: 32px;
+    left: 37px;
+    width: 20px;
+    height: 12px;
+    border: 3px solid var(--ink);
+    border-top: 0;
+    border-radius: 0 0 20px 20px;
+}
+
+.register-page .mushroom-cap {
+    background:
+        radial-gradient(circle 17px at 25% 60%,
+            var(--cream) 95%, transparent 100%),
+        radial-gradient(circle 22px at 62% 28%,
+            var(--cream) 95%, transparent 100%),
+        radial-gradient(circle 12px at 85% 67%,
+            var(--cream) 95%, transparent 100%),
+        #ffb344;
+}
+
+.welcome-name {
+    overflow-wrap: anywhere;
+}
+
+.landing-message {
+    margin: 16px 0;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 30px 16px;
+    }
+
+    .form-panel {
+        padding: 95px 24px 30px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    button {
+        transition: none;
+    }
+}
