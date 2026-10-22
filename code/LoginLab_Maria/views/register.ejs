@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="register-page">
+    <main class="auth-card">
+        <h1 class="page-heading">Create an<br>Account</h1>
+        <p class="subtitle">There’s room for you here.</p>
+
+        <div class="form-panel">
+            <div class="mushroom" aria-hidden="true">
+                <div class="mushroom-cap"></div>
+                <div class="mushroom-stem">
+                    <span class="mushroom-eyes"></span>
+                    <span class="mushroom-smile"></span>
+                </div>
+            </div>
+
+            <% if (error) { %>
+                <p class="error" role="alert"><%= error %></p>
+            <% } %>
+
+            <form action="/register" method="POST">
+                <label for="username">Username</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    autocomplete="username"
+                    required
+                >
+
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    autocomplete="new-password"
+                    required
+                >
+
+                <button type="submit">SIGN UP</button>
+            </form>
+
+            <p class="switch-page">
+                Already have an account? <a href="/login">Log in</a>
+            </p>
+        </div>
+    </main>
+</body>
+</html>
