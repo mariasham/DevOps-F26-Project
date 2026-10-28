@@ -3,6 +3,17 @@ const session = require("express-session");
 const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
 const crypto = require("crypto");
+const {
+    normalizeCredentials,
+    validateLogin,
+    validateRegistration,
+    getRegistrationErrorMessage
+} = require("./authHelpers");
+
+const {
+    createAccount,
+    findMatchingUser
+} = require("./accountHelpers");
 
 const app = express();
 const PORT = 3000;
@@ -36,18 +47,17 @@ app.get("/login", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-    const username = String(req.body.username || "").trim();
-    const password = String(req.body.password || "");
+    const { username, password } = normalizeCredentials(req.body);
+    const error = validateLogin(username, password);
 
-    if (!username || !password) {
-        return res.status(400).render("login", {
-            error: "Please enter your username and password."
-        });
+    if (error) {
+        return res.status(400).render("login", { error });
     }
 
-    db.get(
-        "SELECT username FROM users WHERE username = ? AND password = ?",
-        [username, password],
+    findMatchingUser(
+        db,
+        username,
+        password,
         (err, user) => {
             if (err) {
                 return res.status(500).render("login", {
@@ -72,24 +82,20 @@ app.get("/register", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-    const username = String(req.body.username || "").trim();
-    const password = String(req.body.password || "");
+    const { username, password } = normalizeCredentials(req.body);
+    const error = validateRegistration(username, password);
 
-    if (!username || !password.trim()) {
-        return res.status(400).render("register", {
-            error: "Please enter a username and password."
-        });
+    if (error) {
+        return res.status(400).render("register", { error });
     }
 
-    db.run(
-        "INSERT INTO users (username, password) VALUES (?, ?)",
-        [username, password],
+    createAccount(
+        db,
+        username,
+        password,
         (err) => {
             if (err) {
-                const message =
-                    err.code === "SQLITE_CONSTRAINT"
-                        ? "That username already exists. Please choose another."
-                        : "Unable to create your account. Please try again.";
+                const message = getRegistrationErrorMessage(err);
 
                 return res.status(400).render("register", {
                     error: message
