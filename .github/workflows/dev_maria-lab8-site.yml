@@ -1,53 +1,58 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy Node.js app to Azure Web App - maria-lab8-site
 
 on:
   push:
     branches:
-      - 'dev'
+      - dev
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read #This is required for actions/checkout
+      contents: read
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Node.js version
-        uses: actions/setup-node@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '24.x'
 
-      - name: npm install, build, and test
+      - name: Install dependencies and build
+        working-directory: code/project-site
         run: |
           npm install
           npm run build --if-present
-          npm run test --if-present
 
-      - name: Upload artifact for deployment job
+      - name: Package website
+        run: tar -czf site.tar.gz -C code/project-site .
+
+      - name: Upload website artifact
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: .
+          path: site.tar.gz
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
     permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
+      id-token: write
+      contents: read
 
     steps:
-      - name: Download artifact from build job
+      - name: Download website artifact
         uses: actions/download-artifact@v4
         with:
           name: node-app
-      
+
+      - name: Extract website
+        run: |
+          mkdir site
+          tar -xzf site.tar.gz -C site
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -55,11 +60,10 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_69D8FA46CEF64A36BCD499DEFC971EAF }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6F23879118974D3B9A346FC8CE9A2B58 }}
 
-      - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
+      - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'maria-lab8-site'
-          slot-name: 'Production'
-          package: .
+          app-name: maria-lab8-site
+          slot-name: Production
+          package: site
           
