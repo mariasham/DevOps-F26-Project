@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quickstart | Law School Application Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Quickstart Guide</h1>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="documentation.html">Documentation</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>1. Check Prerequisites</h2>
+      <p>
+        Install the Java Development Kit (JDK), Apache Maven, and Git
+        before launching the application.
+      </p>
+      <p>Check that they are available by running:</p>
+      <pre><code>java -version
+mvn -version
+git --version</code></pre>
+    </section>
+
+    <section>
+      <h2>2. Download the Project</h2>
+      <p>Open a terminal and clone the repository:</p>
+      <pre><code>git clone https://github.com/mariasham/DevOps-F26-Project.git</code></pre>
+      <p>
+        If you already have the repository downloaded, use your existing
+        project folder.
+      </p>
+    </section>
+
+    <section>
+      <h2>3. Open the Application Folder</h2>
+      <p>
+        From inside the DevOps-F26-Project folder, open the code folder,
+        which contains pom.xml:
+      </p>
+      <pre><code>cd code</code></pre>
+    </section>
+
+    <section>
+      <h2>4. Launch the Application</h2>
+      <p>Run the following command from the code folder:</p>
+      <pre><code>mvn javafx:run</code></pre>
+      <p>
+        Maven downloads the required dependencies on the first run.
+        An internet connection is needed for those downloads.
+        The application opens in a desktop window.
+      </p>
+      <img
+        src="images/school-list.png"
+        alt="Law School Application Tracker main window showing the school list"
+        width="800"
+      >
+    </section>
+
+    <section>
+      <h2>5. Explore the Features</h2>
+      <p>
+        Once the school list appears, follow the
+        <a href="documentation.html">feature guides</a>
+        to learn how to use the application.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Law School Application Tracker · Maria Shamasna</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Button?>
+
+<AnchorPane prefHeight="260.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/23"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="edu.westga.comp4420.grocery_list.view.codebehind.SchoolDetailsWindow">
+    <children>
+        <Label fx:id="nameLabel" layoutX="20.0" layoutY="20.0" prefWidth="380.0" text="Law School">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+        <Label fx:id="locationLabel" layoutX="20.0" layoutY="65.0" prefWidth="380.0"
+            text="Location:" />
+        <Label fx:id="deadlineLabel" layoutX="20.0" layoutY="100.0" prefWidth="380.0"
+            text="Deadline:" />
+        <Label fx:id="statusLabel" layoutX="20.0" layoutY="135.0" prefWidth="380.0" text="Status:" />
+        <Label fx:id="linkLabel" layoutX="20.0" layoutY="170.0" prefWidth="380.0" wrapText="true"
+            text="Application Link:" />
+    </children>
+    <Button layoutX="20.0" layoutY="215.0" mnemonicParsing="false" onAction="#openApplicationLink"
+        text="Open Application Link" />
+</AnchorPane>

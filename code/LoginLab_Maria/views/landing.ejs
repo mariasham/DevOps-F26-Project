@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <main class="auth-card">
+        <h1 class="page-heading welcome-name">
+            Hi there,<br><%= username %>!
+        </h1>
+        <p class="subtitle">Make yourself at home.</p>
+
+        <div class="form-panel">
+            <div class="mushroom" aria-hidden="true">
+                <div class="mushroom-cap"></div>
+                <div class="mushroom-stem">
+                    <span class="mushroom-eyes"></span>
+                    <span class="mushroom-smile"></span>
+                </div>
+            </div>
+
+            <p class="landing-message">
+                You’re logged in.<br>
+                Glad you’re here!
+            </p>
+
+            <form action="/logout" method="POST">
+                <button type="submit">LOG OUT</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

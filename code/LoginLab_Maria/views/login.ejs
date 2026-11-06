@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <main class="auth-card">
+        <h1 class="page-heading">Welcome<br>Back!</h1>
+        <p class="subtitle">A little mushroom is happy to see you.</p>
+
+        <div class="form-panel">
+            <div class="mushroom" aria-hidden="true">
+                <div class="mushroom-cap"></div>
+                <div class="mushroom-stem">
+                    <span class="mushroom-eyes"></span>
+                    <span class="mushroom-smile"></span>
+                </div>
+            </div>
+
+            <% if (error) { %>
+                <p class="error" role="alert"><%= error %></p>
+            <% } %>
+
+            <form action="/login" method="POST">
+                <label for="username">Username</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    autocomplete="username"
+                    required
+                >
+
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    autocomplete="current-password"
+                    required
+                >
+
+                <button type="submit">SIGN IN</button>
+            </form>
+
+            <p class="switch-page">
+                New here? <a href="/register">Create an account</a>
+            </p>
+        </div>
+    </main>
+</body>
+</html>
